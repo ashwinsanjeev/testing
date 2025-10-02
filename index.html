@@ -20,7 +20,7 @@
         <li><a href="#organize" data-link="organizePage" class="nav-link">Organize Camp</a></li>
         <li id="adminNavItem" class="hidden"><a href="#admin" data-link="adminPage" class="nav-link">Admin</a></li>
         <li class="profile-nav">
-          <button id="profileButton" class="profile-button" aria-haspopup="true" aria-expanded="false">Profile ▾</button>
+          <a id="profileButton" href="#profile" class="nav-link" aria-haspopup="true" aria-expanded="false">Profile ▾</a>
           <div id="profilePopup" class="profile-popup" role="menu" aria-hidden="true"></div>
         </li>
       </ul>
@@ -30,16 +30,49 @@
   <main class="container">
     <!-- Home -->
     <section id="homePage" class="page active" data-page>
-      <h1>Welcome to BloodConnect</h1>
-      <p>
-        Find donors, request blood, and organize donation camps — all in one place.
-        Built with only HTML, CSS, and JavaScript.
-      </p>
-      <div class="quick-actions">
-        <a class="button primary" href="#register" data-link="registerPage">Register as Donor</a>
-        <a class="button" href="#search" data-link="searchPage">Search Donors</a>
-        <a class="button" href="#organize" data-link="organizePage">Organize Camp</a>
-      </div>
+      <section class="hero">
+        <h1 class="hero-title">Connect. Donate. Save Lives.</h1>
+        <p class="hero-subtitle">Find donors, request blood, and organize donation camps — built with only HTML, CSS, and JavaScript.</p>
+        <div class="hero-cta">
+          <a class="button primary" href="#register" data-link="registerPage">Register as Donor</a>
+          <a class="button" href="#search" data-link="searchPage">Search Donors</a>
+          <a class="button" href="#organize" data-link="organizePage">Organize Camp</a>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="stat">
+          <div id="statDonors" class="stat-number">0</div>
+          <div class="stat-label">Registered donors</div>
+        </div>
+        <div class="stat">
+          <div id="statCities" class="stat-number">0</div>
+          <div class="stat-label">Cities covered</div>
+        </div>
+        <div class="stat">
+          <div id="statCampsApproved" class="stat-number">0</div>
+          <div class="stat-label">Camps approved</div>
+        </div>
+      </section>
+
+      <section class="features-grid">
+        <article class="feature-card">
+          <h3>Register</h3>
+          <p class="muted">Join the donor community by sharing your blood group and city.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Search</h3>
+          <p class="muted">Find matching donors by blood group and city in seconds.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Request</h3>
+          <p class="muted">Reach matching donors via email with one click.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Organize & Admin</h3>
+          <p class="muted">Propose camps and let admins approve, notify local donors.</p>
+        </article>
+      </section>
     </section>
 
     <!-- Register as Donor -->

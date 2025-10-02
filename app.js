@@ -57,6 +57,15 @@
   function uid(){ return 'id-' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
 
   function updateYear(){ document.getElementById('year').textContent = new Date().getFullYear(); }
+  function updateHomeStats(){
+    const donors = storage.read('donors', []);
+    const cities = Array.from(new Set(donors.map(d => (d.city||'').trim().toLowerCase()).filter(Boolean)));
+    const campsApproved = storage.read('campRequests', []).filter(r => r.status === 'approved').length;
+    const setText = (id, value) => { const el = document.getElementById(id); if(el) el.textContent = String(value); };
+    setText('statDonors', donors.length);
+    setText('statCities', cities.length);
+    setText('statCampsApproved', campsApproved);
+  }
 
   // Profile popup
   const profileButton = document.getElementById('profileButton');
@@ -148,6 +157,7 @@
     storage.write('donors', donors);
     msg.textContent = 'You are registered as a donor.';
     e.target.reset();
+    updateHomeStats();
   }
 
   // Donor search
@@ -210,6 +220,7 @@
     storage.write('campRequests', list);
     msg.textContent = 'Camp submitted for admin approval.';
     e.target.reset();
+    updateHomeStats();
   }
 
   function renderAdmin(){
@@ -253,6 +264,7 @@
     requests[idx].decisionAt = new Date().toISOString();
     storage.write('campRequests', requests);
     renderAdmin();
+    updateHomeStats();
   }
 
   function notifyDonorsForCamp(id){
@@ -294,6 +306,9 @@
     const toggle = document.getElementById('navToggle');
     const nav = document.getElementById('mainNav');
     toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    // keep Profile link styled like others while still toggling popup
+    const profileBtn = document.getElementById('profileButton');
+    profileBtn.addEventListener('click', (e) => { e.preventDefault(); toggleProfilePopup(); });
   }
 
   function setupForms(){
@@ -314,7 +329,6 @@
   }
 
   function setupProfile(){
-    document.getElementById('profileButton').addEventListener('click', toggleProfilePopup);
     document.addEventListener('click', (e) => {
       const isClickInside = profilePopup.contains(e.target) || profileButton.contains(e.target);
       if(!isClickInside) closeProfilePopup();
@@ -329,6 +343,7 @@
     setupTabs();
     setupProfile();
     updateAuthUI();
+    updateHomeStats();
 
     // Route from hash if present
     const hash = (location.hash || '').replace('#','');
