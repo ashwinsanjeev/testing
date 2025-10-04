@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BloodConnect</title>
+  <title>BloodConnect — Home</title>
   <link rel="stylesheet" href="./styles.css" />
   <link rel="icon" href="data:," />
 </head>
-<body>
+<body data-route="home">
   <header class="site-header">
     <div class="brand">BloodConnect</div>
     <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
     <nav id="mainNav" class="nav">
       <ul>
-        <li><a href="#home" data-link="homePage" class="nav-link active">Home</a></li>
-        <li><a href="#register" data-link="registerPage" class="nav-link">Register</a></li>
-        <li><a href="#search" data-link="searchPage" class="nav-link">Search</a></li>
-        <li><a href="#request" data-link="requestPage" class="nav-link">Request</a></li>
-        <li><a href="#organize" data-link="organizePage" class="nav-link">Organize Camp</a></li>
-        <li id="adminNavItem" class="hidden"><a href="#admin" data-link="adminPage" class="nav-link">Admin</a></li>
+        <li><a href="index.html" data-route="home" class="nav-link">Home</a></li>
+        <li><a href="register.html" data-route="register" class="nav-link">Register</a></li>
+        <li><a href="search.html" data-route="search" class="nav-link">Search</a></li>
+        <li><a href="request.html" data-route="request" class="nav-link">Request</a></li>
+        <li><a href="organize.html" data-route="organize" class="nav-link">Organize Camp</a></li>
+        <li id="adminNavItem" class="hidden"><a href="admin.html" data-route="admin" class="nav-link">Admin</a></li>
         <li class="profile-nav">
           <button id="profileButton" class="profile-button" aria-haspopup="true" aria-expanded="false">Profile ▾</button>
           <div id="profilePopup" class="profile-popup" role="menu" aria-hidden="true"></div>
@@ -28,167 +28,19 @@
   </header>
 
   <main class="container">
-    <!-- Home -->
-    <section id="homePage" class="page active" data-page>
+    <section class="page active">
       <h1>Welcome to BloodConnect</h1>
       <p>
         Find donors, request blood, and organize donation camps — all in one place.
         Built with only HTML, CSS, and JavaScript.
       </p>
       <div class="quick-actions">
-        <a class="button primary" href="#register" data-link="registerPage">Register as Donor</a>
-        <a class="button" href="#search" data-link="searchPage">Search Donors</a>
-        <a class="button" href="#organize" data-link="organizePage">Organize Camp</a>
+        <a class="button primary" href="register.html">Register as Donor</a>
+        <a class="button" href="search.html">Search Donors</a>
+        <a class="button" href="request.html">Request Blood</a>
+        <a class="button" href="organize.html">Organize Camp</a>
       </div>
     </section>
-
-    <!-- Register as Donor -->
-    <section id="registerPage" class="page" data-page>
-      <h2>Register as Donor</h2>
-      <form id="registerForm" class="form">
-        <div class="form-row">
-          <label for="regName">Name</label>
-          <input id="regName" name="name" type="text" required />
-        </div>
-        <div class="form-row">
-          <label for="regBlood">Blood Group</label>
-          <select id="regBlood" name="bloodGroup" required>
-            <option value="">Select</option>
-            <option>A+</option><option>A-</option>
-            <option>B+</option><option>B-</option>
-            <option>AB+</option><option>AB-</option>
-            <option>O+</option><option>O-</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="regEmail">Email</label>
-          <input id="regEmail" name="email" type="email" required />
-        </div>
-        <div class="form-row">
-          <label for="regPhone">Contact Number</label>
-          <input id="regPhone" name="contact" type="tel" pattern="[0-9]{10}" placeholder="10 digits" required />
-        </div>
-        <div class="form-row">
-          <label for="regCity">City</label>
-          <input id="regCity" name="city" type="text" required />
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="button primary">Register</button>
-          <button type="reset" class="button">Reset</button>
-        </div>
-        <p id="registerMsg" class="form-msg" role="status"></p>
-      </form>
-    </section>
-
-    <!-- Search Donors -->
-    <section id="searchPage" class="page" data-page>
-      <h2>Search Donors</h2>
-      <form id="searchForm" class="form">
-        <div class="form-row">
-          <label for="searchBlood">Blood Group</label>
-          <select id="searchBlood" name="bloodGroup" required>
-            <option value="">Select</option>
-            <option>A+</option><option>A-</option>
-            <option>B+</option><option>B-</option>
-            <option>AB+</option><option>AB-</option>
-            <option>O+</option><option>O-</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="searchCity">City</label>
-          <input id="searchCity" name="city" type="text" required />
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="button primary">Search</button>
-          <button type="reset" class="button">Clear</button>
-        </div>
-      </form>
-
-      <div id="searchResults" class="results"></div>
-    </section>
-
-    <!-- Request Blood -->
-    <section id="requestPage" class="page" data-page>
-      <h2>Request Blood</h2>
-      <form id="requestForm" class="form">
-        <div class="form-row">
-          <label for="reqName">Name</label>
-          <input id="reqName" name="name" type="text" required />
-        </div>
-        <div class="form-row">
-          <label for="reqBlood">Blood Group</label>
-          <select id="reqBlood" name="bloodGroup" required>
-            <option value="">Select</option>
-            <option>A+</option><option>A-</option>
-            <option>B+</option><option>B-</option>
-            <option>AB+</option><option>AB-</option>
-            <option>O+</option><option>O-</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="reqEmail">Email</label>
-          <input id="reqEmail" name="email" type="email" required />
-        </div>
-        <div class="form-row">
-          <label for="reqPhone">Contact Number</label>
-          <input id="reqPhone" name="contact" type="tel" pattern="[0-9]{10}" placeholder="10 digits" required />
-        </div>
-        <div class="form-row">
-          <label for="reqCity">City</label>
-          <input id="reqCity" name="city" type="text" required />
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="button primary">Find & Email Donors</button>
-          <button type="reset" class="button">Reset</button>
-        </div>
-        <p id="requestMsg" class="form-msg" role="status"></p>
-        <div id="requestEmailArea"></div>
-      </form>
-    </section>
-
-    <!-- Organize Camp (User) -->
-    <section id="organizePage" class="page" data-page>
-      <h2>Organize Donation Camp</h2>
-      <form id="organizeForm" class="form">
-        <div class="form-row">
-          <label for="campName">Event Name</label>
-          <input id="campName" name="eventName" type="text" required />
-        </div>
-        <div class="form-row">
-          <label for="campDate">Date</label>
-          <input id="campDate" name="date" type="date" required />
-        </div>
-        <div class="form-row">
-          <label for="campCity">City</label>
-          <input id="campCity" name="city" type="text" required />
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="button primary">Submit for Approval</button>
-          <button type="reset" class="button">Reset</button>
-        </div>
-        <p id="organizeMsg" class="form-msg" role="status"></p>
-      </form>
-    </section>
-
-    <!-- Admin (Organize Camp moderation) -->
-    <section id="adminPage" class="page" data-page>
-      <h2>Admin - Organize Camp Requests</h2>
-      <div class="tabs">
-        <button class="tab-button active" data-tab="pending">Pending</button>
-        <button class="tab-button" data-tab="approved">Approved</button>
-        <button class="tab-button" data-tab="declined">Declined</button>
-      </div>
-      <div class="tab-content">
-        <div id="tab-pending" class="tab-panel active">
-          <div id="pendingList" class="card-list"></div>
-        </div>
-        <div id="tab-approved" class="tab-panel">
-          <div id="approvedList" class="card-list"></div>
-        </div>
-        <div id="tab-declined" class="tab-panel">
-          <div id="declinedList" class="card-list"></div>
-        </div>
-      </div>
     </section>
 
     <!-- Login Modal Page -->
@@ -246,6 +98,8 @@
     <p>© <span id="year"></span> BloodConnect</p>
   </footer>
 
-  <script src="./app.js" defer></script>
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <script src="./common.js" defer></script>
+  <script src="./home.js" defer></script>
 </body>
 </html>

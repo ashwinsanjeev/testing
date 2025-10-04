@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BloodConnect — Request</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-route="request">
+    <header class="site-header">
+      <div class="brand">BloodConnect</div>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="mainNav" class="nav">
+        <ul>
+          <li><a href="index.html" data-route="home" class="nav-link">Home</a></li>
+          <li><a href="register.html" data-route="register" class="nav-link">Register</a></li>
+          <li><a href="search.html" data-route="search" class="nav-link">Search</a></li>
+          <li><a href="request.html" data-route="request" class="nav-link">Request</a></li>
+          <li><a href="organize.html" data-route="organize" class="nav-link">Organize Camp</a></li>
+          <li id="adminNavItem" class="hidden"><a href="admin.html" data-route="admin" class="nav-link">Admin</a></li>
+          <li class="profile-nav">
+            <button id="profileButton" class="profile-button" aria-haspopup="true" aria-expanded="false">Profile ▾</button>
+            <div id="profilePopup" class="profile-popup" role="menu" aria-hidden="true"></div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="page active">
+        <h2>Request Blood</h2>
+        <form id="requestForm" class="form">
+          <div class="form-row"><label for="reqName">Name</label><input id="reqName" type="text" required /></div>
+          <div class="form-row"><label for="reqBlood">Blood Group</label>
+            <select id="reqBlood" required>
+              <option value="">Select</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+              <option>O+</option><option>O-</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="reqEmail">Email</label><input id="reqEmail" type="email" required /></div>
+          <div class="form-row"><label for="reqPhone">Contact Number</label><input id="reqPhone" type="tel" pattern="[0-9]{10}" placeholder="10 digits" required /></div>
+          <div class="form-row"><label for="reqCity">City</label><input id="reqCity" type="text" required /></div>
+          <div class="form-actions"><button type="submit" class="button primary">Find & Email Donors</button></div>
+          <p id="requestMsg" class="form-msg" role="status"></p>
+          <div id="requestEmailArea"></div>
+        </form>
+      </section>
+
+      <!-- Modals -->
+      <section id="loginPage" class="modal" aria-hidden="true" role="dialog" aria-label="Login">
+        <div class="modal-content">
+          <button class="modal-close" data-close>&times;</button>
+          <h3>Login</h3>
+          <form id="loginForm" class="form">
+            <div class="form-row"><label for="loginEmail">Email</label><input id="loginEmail" type="email" required /></div>
+            <div class="form-row"><label for="loginPassword">Password</label><input id="loginPassword" type="password" required /></div>
+            <div class="form-actions"><button type="submit" class="button primary">Login</button></div>
+            <p id="loginMsg" class="form-msg" role="status"></p>
+          </form>
+          <p class="muted">Don't have an account? <a href="#" id="goToSignup">Sign up</a></p>
+        </div>
+      </section>
+      <section id="signupPage" class="modal" aria-hidden="true" role="dialog" aria-label="Sign up">
+        <div class="modal-content">
+          <button class="modal-close" data-close>&times;</button>
+          <h3>Sign up</h3>
+          <form id="signupForm" class="form">
+            <div class="form-row"><label for="signupName">Username</label><input id="signupName" type="text" required /></div>
+            <div class="form-row"><label for="signupEmail">Email</label><input id="signupEmail" type="email" required /></div>
+            <div class="form-row"><label for="signupPassword">Password</label><input id="signupPassword" type="password" minlength="6" required /></div>
+            <div class="form-actions"><button type="submit" class="button primary">Create Account</button></div>
+            <p id="signupMsg" class="form-msg" role="status"></p>
+          </form>
+          <p class="muted">Already have an account? <a href="#" id="goToLogin">Log in</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><p>© <span id="year"></span> BloodConnect</p></footer>
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <script src="./common.js" defer></script>
+    <script src="./request.js" defer></script>
+  </body>
+  </html>
+
