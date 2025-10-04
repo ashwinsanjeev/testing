@@ -61,27 +61,12 @@
   // Profile popup
   const profileButton = document.getElementById('profileButton');
   const profilePopup = document.getElementById('profilePopup');
-  if(!profileButton || !profilePopup){
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('profileButton');
-      const pop = document.getElementById('profilePopup');
-      if(!btn || !pop) return; // elements missing
-      btn.addEventListener('click', () => {
-        const opened = pop.classList.contains('open');
-        if(opened){ closeProfilePopup(); } else { renderProfilePopup(); openProfilePopup(); }
-      });
-    });
-  }
 
   function openProfilePopup(){ profilePopup.classList.add('open'); profileButton.setAttribute('aria-expanded', 'true'); profilePopup.setAttribute('aria-hidden', 'false'); }
   function closeProfilePopup(){ profilePopup.classList.remove('open'); profileButton.setAttribute('aria-expanded', 'false'); profilePopup.setAttribute('aria-hidden', 'true'); }
-  function toggleProfilePopup(){
-    if(!profilePopup || !profileButton) return;
-    profilePopup.classList.contains('open') ? closeProfilePopup() : (renderProfilePopup(), openProfilePopup());
-  }
+  function toggleProfilePopup(){ profilePopup.classList.contains('open') ? closeProfilePopup() : (renderProfilePopup(), openProfilePopup()); }
 
   function renderProfilePopup(){
-    if(!profilePopup) return;
     const user = getCurrentUser();
     if(!user){
       profilePopup.innerHTML = `
@@ -329,10 +314,8 @@
   }
 
   function setupProfile(){
-    const btn = document.getElementById('profileButton');
-    if(btn) btn.addEventListener('click', toggleProfilePopup);
+    document.getElementById('profileButton').addEventListener('click', toggleProfilePopup);
     document.addEventListener('click', (e) => {
-      if(!profilePopup || !profileButton) return;
       const isClickInside = profilePopup.contains(e.target) || profileButton.contains(e.target);
       if(!isClickInside) closeProfilePopup();
     });
